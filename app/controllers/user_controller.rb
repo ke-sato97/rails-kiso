@@ -1,10 +1,24 @@
 class UserController < ApplicationController
-  def email:string
-  end
+    def create
+        @user = login(params[:email], params[:password])
+        
+        if @user
+          redirect_back_or_to(:users, notice: 'Login successful')
+        else
+          flash.now[:alert] = 'Login failed'
+          render action: 'new'
+        end
 
-  def crypted_password:string
-  end
+      def destroy
+        logout
+        redirect_to(:users, notice: 'Logged out!')
+      end
+    end
 
-  def salt:string
-  end
+    private
+
+    def user_params
+        params.require(:user).permit(:email, :password, :password_confirmation)
+    end
+
 end

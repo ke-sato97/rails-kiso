@@ -2,6 +2,19 @@
   <div class="row">
     <div class=" col-md-10 offset-md-1 col-lg-8 offset-lg-2">
       <h1>ログイン</h1>
+      <% form_with model: @user, local: true do |f| %>
+        <div class="form-group">
+          <%= f.label :email, 'Email' %>
+          <%= f.text_field :email, name: 'email', id: 'email', class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :password, 'Password' %>
+          <%= f.password_field :password, class: "form-control", id: 'password' %>
+        </div>
+         <div class="actions">
+          <%= f.submit "登録", value: 'ログイン', class: "btn btn-primary" %>
+        </div>
+      <% end %>
       <form>
         <div class="form-group">
           <label for="email">Email</label>
